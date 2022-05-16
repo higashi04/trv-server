@@ -7,7 +7,7 @@ const ObjectId = require('mongodb').ObjectId
 
 router.get('/getBuses', async(req, res) => {
     let db_connect = dbo.getDb('trasn-vill');
-    db_connect.collection('buses').find({}).populate({path: 'driver'}).toArray((err, result) => {
+    db_connect.collection('buses').find({}).toArray((err, result) => {
             if(err) throw err
             res.json(result)
         })
