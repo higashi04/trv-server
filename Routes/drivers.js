@@ -7,7 +7,7 @@ const ObjectId = require('mongodb').ObjectId
 
 router.get('/getDrivers', async(req, res) => {
     let db_connect = dbo.getDb('trasn-vill');
-    db_connect.collection('drivers').find({}).toArray((err, result) => {
+    db_connect.collection('drivers').find({company: req.body}).toArray((err, result) => {
             if(err) throw err
             res.json(result)
         })
