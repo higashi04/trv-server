@@ -23,4 +23,13 @@ router.get('/getDrivers/:id', (req, res) => {
 })
 
 
+router.get('/gafete/:id', (req, res) => {
+    let db_connect = dbo.getDb();
+    let query = {chofer: ObjectId(req.params.id)};
+    db_connect.collection('gafetechoferes').findOne(query, (err, result) => {
+            if (err) throw err;
+            res.json(result)
+        })
+})
+
 module.exports = router
