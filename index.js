@@ -11,6 +11,7 @@ const MongoStore = require('connect-mongo');
 const busRoutes = require('./Routes/buses')
 const driverRoutes = require('./Routes/drivers')
 const userRoutes = require('./Routes/users')
+const vacanciesRoutes = require('./Routes/vacancies')
 
 app.use(cors());
 app.use(express.json());
@@ -49,6 +50,7 @@ require('./config/passportConfig')(passport)
 app.use('/buses', busRoutes);
 app.use('/drivers', driverRoutes);
 app.use('/users', userRoutes);
+app.use('/vacantes', vacanciesRoutes);
 
 const port = process.env.PORT || 8083
 const dbo = require('./db/conn');
