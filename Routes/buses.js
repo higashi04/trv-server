@@ -1,25 +1,14 @@
 const express = require('express')
 const router = express.Router()
-const dbo = require('../db/conn')
-const ObjectId = require('mongodb').ObjectId
-
-
+const buses = require('../models/buses')
 
 router.get('/getBuses', async(req, res) => {
-    let db_connect = dbo.getDb('trasn-vill');
-    db_connect.collection('buses').find({}).toArray((err, result) => {
-            if(err) throw err
-            res.json(result)
-        })
-        
+    const data = await buses.find({}).exec()
+    res.send(data)
 })
-router.get('/getBuses/:id', (req, res) => {
-    let db_connect = dbo.getDb();
-    let query = {_id: ObjectId(req.params.id)};
-    db_connect.collection('buses').findOne(query, (err, result) => {
-            if (err) throw err;
-            res.json(result)
-        })
+router.get('/getBuses/:id', async(req, res) => {
+const data = await buses.findById(req.params.id).exec()
+res.send(data)
 })
 
 
