@@ -5,6 +5,7 @@ const cors = require("cors");
 require("dotenv").config();
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
+const MemoryStore = require('memorystore')(session)
 const bodyParser = require("body-parser");
 const MongoStore = require("connect-mongo");
 const mongoose = require("mongoose");
@@ -41,7 +42,7 @@ mongoose.connection.on("error", (err) => {
 app.use(
   session({
     secret: process.env.SECRET,
-    resave: true,
+    resave: false,
     saveUninitialized: true,
     cookie: {
       httpOnly: true,

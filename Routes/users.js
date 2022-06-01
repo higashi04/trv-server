@@ -7,7 +7,6 @@ const jwt = require("jsonwebtoken");
 router.post("/signup", async (req, res) => {
   try {
     const { username, email, password, firstName, lastName, company } = req.body;
-    console.log(req.body)
     const user = new customerSchema({
       username,
       email,
