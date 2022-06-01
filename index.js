@@ -4,7 +4,8 @@ const app = express();
 const cors = require("cors");
 require("dotenv").config();
 const cookieParser = require("cookie-parser");
-const session = require("express-session");
+// const session = require("express-session");
+// const MemoryStore = require('memorystore')(session)
 const bodyParser = require("body-parser");
 const MongoStore = require("connect-mongo");
 const mongoose = require("mongoose");
@@ -38,19 +39,19 @@ mongoose.connection.on("connected", () => {
 mongoose.connection.on("error", (err) => {
   console.error("Error on mongo", err);
 });
-app.use(
-  session({
-    secret: process.env.SECRET,
-    resave: true,
-    saveUninitialized: true,
-    cookie: {
-      httpOnly: true,
-      // secure: true,
-      expires: Date.now() + 1000 * 60 * 60 * 24,
-      maxAge: 1000 * 60 * 60 * 24,
-    },
-  })
-);
+// app.use(
+//   session({
+//     secret: process.env.SECRET,
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: {
+//       httpOnly: true,
+//       // secure: true,
+//       expires: Date.now() + 1000 * 60 * 60 * 24,
+//       maxAge: 1000 * 60 * 60 * 24,
+//     },
+//   })
+// );
 app.use(cookieParser(process.env.SECRET));
 app.use("/buses", busRoutes);
 app.use("/drivers", driverRoutes);
@@ -58,8 +59,6 @@ app.use("/users", userRoutes);
 app.use("/vacantes", vacanciesRoutes);
 
 const port = process.env.PORT || 8083;
-const dbo = require("./db/conn");
-
 app.get("/", requireAuth, (req, res) => {
   res.send(
     `this is a server only, no frontend pretty thingies, btw your email is ${req.user.email}`
@@ -68,8 +67,5 @@ app.get("/", requireAuth, (req, res) => {
 });
 
 app.listen(port, () => {
-  // dbo.connectToServer((err) => {
-  //     if (err) console.error(err)
-  // })
   console.log(`App running on port ${port}`);
 });
