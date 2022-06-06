@@ -58,12 +58,19 @@ app.use("/drivers", driverRoutes);
 app.use("/users", userRoutes);
 app.use("/vacantes", vacanciesRoutes);
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://transportevillarreal.herokuapp.com"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+
 const port = process.env.PORT || 8083;
-app.get("/", requireAuth, (req, res) => {
+app.get("/", (req, res) => {
   res.send(
-    `this is a server only, no frontend pretty thingies, btw your email is ${req.user.email}`
+    `this is a server only, no frontend pretty thingies`
   );
-  console.log(`this is a server only, no frontend pretty thingies, btw your email is ${req.user.email}`)
+  console.log(`this is a server only, no frontend pretty thingies`)
 });
 
 app.listen(port, () => {
