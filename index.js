@@ -1,7 +1,7 @@
 require("./models/customer");
 const express = require("express");
 const app = express();
-const cors = require("cors");
+// const cors = require("cors");
 require("dotenv").config();
 const cookieParser = require("cookie-parser");
 // const session = require("express-session");
@@ -9,7 +9,7 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const MongoStore = require("connect-mongo");
 const mongoose = require("mongoose");
-const requireAuth = require("./middleware/requireAuth");
+
 
 const busRoutes = require("./Routes/buses");
 const driverRoutes = require("./Routes/drivers");
@@ -30,7 +30,7 @@ const corsOpts = {
 }
 
 
-app.use(cors(corsOpts));
+// app.use(cors(corsOpts));
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
