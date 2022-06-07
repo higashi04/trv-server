@@ -15,20 +15,20 @@ const driverRoutes = require("./Routes/drivers");
 const userRoutes = require("./Routes/users");
 const vacanciesRoutes = require("./Routes/vacancies");
 
-const whitelist = ["https://transportevillarreal.herokuapp.com", "http://localhost:3000"];
+// const whitelist = ["https://transportevillarreal.herokuapp.com", "http://localhost:3000"];
 
-const corsOpts = {
-  origin: function (origin, callback) {
-    if (!origin || whitelist.indexOf(origin !== -1)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Sitio Bloqueado"));
-    }
-  },
-  credentials: true,
-};
+// const corsOpts = {
+//   origin: function (origin, callback) {
+//     if (!origin || whitelist.indexOf(origin !== -1)) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Sitio Bloqueado"));
+//     }
+//   },
+//   credentials: true,
+// };
 
-app.use(cors(corsOpts));
+app.use(cors({origin: true}));
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
