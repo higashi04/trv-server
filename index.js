@@ -16,8 +16,8 @@ const userRoutes = require("./Routes/users");
 const vacanciesRoutes = require("./Routes/vacancies");
 
 const whitelist = [
-  "https://transportevillarreal.herokuapp.com",
-  "http://localhost:3000",
+  "https://transportevillarreal.herokuapp.com/",
+  "http://localhost:3000/",
 ];
 const corsOptions = {
   origin: (origin, callback) => {
