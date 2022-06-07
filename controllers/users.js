@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const customerSchema = mongoose.model("customers");
 
 const generateToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, {
+    return jwt.sign({ id }, process.env.TOKEN_SECRET, {
       expiresIn: '30d',
     })
   }

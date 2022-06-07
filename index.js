@@ -30,9 +30,7 @@ const corsOptions = {
 };
 
 app.use(
-  cors(corsOptions, {
-    methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
-  })
+  cors()
 );
 app.use(express.json());
 app.use(bodyParser.json());
@@ -63,7 +61,7 @@ app.use(
     saveUninitialized: true,
     cookie: {
       httpOnly: true,
-      secure: true,
+      // secure: true,
       expires: Date.now() + 1000 * 60 * 60 * 24,
       maxAge: 1000 * 60 * 60 * 24,
     },
