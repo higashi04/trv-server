@@ -23,6 +23,10 @@ router.get('/getDrivers/aistermi', async(req, res) => {
     const data = await drivers.find({company: 'AISTERMI', fueDadoDeBaja: false}).exec()
     res.send(data)
 })
+router.get('/getDrivers/ezo', async(req, res) => {
+    const data = await drivers.find({company: 'EZO', fueDadoDeBaja: false}).exec()
+    res.send(data)
+})
 
 router.get('/getDrivers/:id', async(req, res) => {
     const data = await drivers.findById(req.params.id).populate({path: "bus"}).exec()
